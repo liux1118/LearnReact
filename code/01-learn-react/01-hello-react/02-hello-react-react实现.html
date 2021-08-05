@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- 开发依赖 -->
+  <script src="../react/react.development.js"></script>
+  <script src="../react/react-dom.development.js"></script>
+  <script src="../react/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    let msg = 'hello react';
+
+
+    // <h2>hello world</h2>：jsx代码
+    // ReactDOM.render(<h2>hello world</h2>, root)
+    // ReactDOM.render(<h2>{msg}</h2>, root)
+
+      ReactDOM.render(
+        <div>
+          <h2>{msg}</h2>
+        </div>, 
+        root
+      );
+
+
+  </script>
+</body>
+
+</html>

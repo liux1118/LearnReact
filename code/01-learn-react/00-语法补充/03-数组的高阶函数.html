@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const names = ['abc', 'sdc', 'dsc', 'ndx']
+
+    // name.map(回调函数, 给前面的回调函数绑定this，但比较少传)
+    /**
+     *回调函数有三个参数
+     *参数一：执行时的对应元素
+     *参数二：对应的下标值
+     *参数三：完整的数组对象
+     */
+    // map()返回一个新的数组，数组中的元素为原数组调用函数后处理的值
+    const newNames = names.map((item, index, arr) => item + '000')
+    console.log(newNames);
+
+    const numbers =  [110, 23, 345, 45, 55];
+    const newNumber = numbers.filter((item) => item >= 50)
+  </script>
+</body>
+</html>

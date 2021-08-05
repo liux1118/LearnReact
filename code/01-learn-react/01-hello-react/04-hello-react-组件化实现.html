@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- 开发依赖 -->
+  <script src="../react/react.development.js" crossorigin></script>
+  <script src="../react/react-dom.development.js" crossorigin></script>
+  <script src="../react/babel.min.js"></script>
+
+  <script type="text/babel">
+    // 封装App组件
+    class App extends React.Component {
+      // 属性构造器
+      constructor() {
+        // 初始化，要使用this，必须调用super()进行初始化
+        super();
+        // this.message = 'hello react';
+        this.state = {
+          message : 'hello react'
+        }
+      }
+      render() {
+        return (
+          <div>
+            <h2>{this.state.message}</h2>
+            <button onClick={this.btnClick.bind(this)}>修改文本</button>
+          </div>
+        )
+      }
+
+      btnClick() {
+        // this.state.message = 'hello world';
+        // console.log(this.message);
+        // 内部重新执行render，进行数据更改
+        this.setState({
+          message: 'hello world'
+        })
+        
+      }
+    }
+
+
+  // 渲染组件
+    ReactDOM.render(<App />, root)
+  </script>
+</body>
+
+</html>

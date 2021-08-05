@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.模版字符串的基本使用
+    const name = 'liux';
+    const age = 18;
+    const message = `my name is ${name}`;
+
+    // 2.标签模版字符串：可以通过模版字符串的方式对一个函数进行调用
+    function test(...args) {
+      console.log(args);
+    }
+
+    // test("aaa", "bbb", "ccc");
+
+    // test`aaa`;
+    test`my name is ${name}, age is ${age}`
+  </script>
+</body>
+</html>

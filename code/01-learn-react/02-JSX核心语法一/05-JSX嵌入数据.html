@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="../react/react.development.js"></script>
+  <script src="../react/react-dom.development.js"></script>
+  <script src="../react/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          // 1.可以在{}中正常显示的内容
+          name: 'liux', //字符串
+          age: 18, //Number
+          names: ['abc', 'kkwz', 'xbsy'], //Array
+
+          // 2.在{}中不显示的内容
+          text1: null, //null
+          text2: undefined, //undefined
+          text3: false, //Boolean 使用toString方法可显示
+          flag: true,
+
+          // 3.对象不能作为JSX的子类
+          friend: {
+            name: 'liux',
+            age: 21,
+          }
+        }
+      }
+      render() {
+        return (
+          <div>
+            <h2>1.可以在{}中正常显示的内容</h2>
+            <h2>{this.state.name}</h2>
+            <h2>{this.state.age}</h2>
+            <h2>{this.state.names}</h2>
+
+            <h2>2.在{}中不显示的内容</h2>
+            <h2>{this.state.text1}</h2>
+            <h2>{this.state.text2}</h2>
+            <h2>{this.state.text3}</h2>
+
+            <h2>{this.state.flag ? '刻刻丸子牛逼' : null}</h2>
+            <h2>{this.state.flag && '刻刻丸子牛逼'}</h2>
+
+            <h2>3.在{}中不显示的内容，使用方法显示</h2>
+            <h2>null末尾加空字符串：{this.state.text1 + ''}</h2>
+            <h2>undefined末尾加空字符串：{this.state.text2 + ''}</h2>
+            <h2>Boolean可使用toString方法：{this.state.text3.toString()}</h2>
+
+            {/*3.对象不能作为JSX的子类*/}
+            {/*<h2>this.state.friend</h2>*/}
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<App/>, root)
+  </script>
+</body>
+
+</html>

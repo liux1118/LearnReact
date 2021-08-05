@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    // ES5中如何定义类
+    // function Person(name, age) {
+    //   this.name = name;
+    //   this.age = age;
+    // }
+    // 定义在原型里的方法
+    // Person.prototype.runing = function() {
+    //   console.log(this.name, this.age, 'runing');
+    // }
+    // let p = new Person('liux', 18);
+    // p.runing();
+
+    // ES6中创建类
+    class Person {
+      // 构造方法
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      // 定义方法
+      running() {
+        console.log(this);
+        console.log(this.name, this.age, 'running');
+      }
+    }
+
+    const p = new Person('liux', 18);
+    console.log(p.name, p.age);
+    p.running()
+
+    // this绑定题目
+    let func = p.running;
+    // func();
+    // 正常调用这个方法
+    // this undefined 没有绑定任何东西
+
+    let obj = {
+      name: 'kek',
+      age: 21
+    }
+    // call可以绑定this
+    // func.call(obj)
+
+    // 重新给func赋值
+    func = func.bind(obj);
+    func();
+  </script>
+</body>
+</html>
