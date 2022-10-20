@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../react/react.development.js"></script>
+    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/babel.min.js"></script>
 
-  <script src="../react/react.development.js"></script>
-  <script src="../react/react-dom.development.js"></script>
-  <script src="../react/babel.min.js"></script>
-
-  <script type="text/babel">
-
-    class App extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          movies: ['空天猎', '战狼','大话西游','假如能重来'],
-          numbers: [110, 23, 345, 45, 55,66,78,43,40,68,100]
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            movies: ['空天猎', '战狼', '大话西游', '假如能重来'],
+            numbers: [110, 23, 345, 45, 55, 66, 78, 43, 40, 68, 100]
+          };
+        }
+        render() {
+          const { movies, numbers } = this.state;
+          return (
+            <div>
+              <div>电影列表</div>
+              <ul>
+                {movies.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+              <div>数字列表（过滤）</div>
+              <ul>
+                {numbers
+                  .filter((item) => item > 50)
+                  .map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+              </ul>
+              <div>数字列表（截取）</div>
+              <ul>
+                {/*截取三条数据*/}
+                {numbers.slice(0, 4).map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          );
         }
       }
-      render() {
-        const {movies, numbers} = this.state;
-        return (
-          <div>
-            <div>电影列表</div>
-            <ul>
-                {movies.map((item, index) => (<li key={index}>{item}</li>))}
-            </ul>
-            <div>数字列表（过滤）</div>
-            <ul>
-              {numbers.filter(item => item > 50).map((item, index) => (<li key={index}>{item}</li>))}  
-            </ul>
-            <div>数字列表（截取）</div>
-            <ul>
-              {/*截取三条数据*/}
-              {numbers.slice(0, 4).map((item, index) => (<li key={index}>{item}</li>))}  
-            </ul>
-          </div>
-        )
-      }
-    }
 
-    ReactDOM.render(<App/>, root)
-  </script>
-</body>
-
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
 </html>

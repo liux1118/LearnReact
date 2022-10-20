@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- 开发依赖 -->
+    <script src="../react/react.development.js" crossorigin></script>
+    <script src="../react/react-dom.development.js" crossorigin></script>
+    <script src="../react/babel.min.js"></script>
+
+    <script type="text/babel">
+      function ShowMessage(props) {
+        const [message, setMessage] = React.useState(`Hello ${props.name}`);
+        return (
+          <div>
+            <h1>{message}</h1> {/*Kylin*/}
+            <button onClick={() => setMessage('Hello 小刘同学')}>
+              点击试试
+            </button>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <ShowMessage name="zw" />
+            <ShowMessage name="yj" />
+            <ShowMessage name="wxk" />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>

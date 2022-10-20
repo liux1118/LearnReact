@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script src="../react/react.development.js"></script>
+    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/babel.min.js"></script>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            movies: ['战狼', '空天猎', '红海行动', '狙击风云']
+          };
+        }
+        render() {
+          const liArr = [];
+          const myStyle = {
+            fontSize: 20,
+            color: 'red'
+          };
+          for (let movie of this.state.movies) {
+            liArr.push(<li style={myStyle}>{movie}</li>);
+          }
+
+          return (
+            <div>
+              <h2>电影列表1</h2>
+              <ul>{liArr}</ul>
+              <hr />
+              <h2>电影列表2</h2>
+              <ul>
+                {this.state.movies.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+      }
+
+      class Movies extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            movieLists: ['空天猎', '战狼', '长空之王']
+          };
+        }
+
+        render() {
+          const arr = [];
+
+          for (const movie of this.state.movieLists) {
+            arr.push(<h2>{movie}</h2>);
+          }
+
+          return (
+            <div>
+              <h1>列表一</h1>
+              <ul>{arr}</ul>
+              <hr />
+              <h1>列表二</h1>
+              <ul>
+                {this.state.movieLists.map((movie, index) => (
+                  <li key={index}>{movie}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+      }
+      // ReactDOM.render(<App />, root);
+      ReactDOM.render(<Movies />, root);
+    </script>
+  </body>
+</html>

@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="root"></div>
 
-<body>
-  <div id="root"></div>
+    <script src="../react/react.development.js"></script>
+    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/babel.min.js"></script>
 
-  <script src="../react/react.development.js"></script>
-  <script src="../react/react-dom.development.js"></script>
-  <script src="../react/babel.min.js"></script>
-
-  <script type="text/babel">
-
-    class App extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          isLogin: true
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            isLogin: true
+          };
+        }
+        render() {
+          const { isLogin } = this.state;
+          const titleDisplayValue = isLogin ? 'block' : 'none';
+          return (
+            <div>
+              <h1>使用css样式display:none</h1>
+              <button onClick={(e) => this.loginClick()}>
+                {isLogin ? '退出' : '登录'}
+              </button>
+              <hr />
+              {/*<h2 style={{display: (isLogin ? "block" : "none")}}>你好，liux</h2>*/}
+              <h2 style={{ display: titleDisplayValue }}>你好，liux</h2>
+            </div>
+          );
+        }
+        loginClick() {
+          this.setState({
+            isLogin: !this.state.isLogin
+          });
         }
       }
-      render() {
-        const {isLogin} = this.state;
-        const titleDisplayValue = isLogin ? "block" : "none";
-        return (
-          <div>
-            <button onClick={e => this.loginClick()}>{isLogin ? '退出' : '登录'}</button>
-            <hr />
-            {/*<h2 style={{display: (isLogin ? "block" : "none")}}>你好，liux</h2>*/}
-            <h2 style={{display: titleDisplayValue}}>你好，liux</h2>
-          </div>
-        )
-      }
-      loginClick() {
-        this.setState({
-          isLogin: !this.state.isLogin
-        })
-      }
-    }
 
-    ReactDOM.render(<App/>, root)
-  </script>
-</body>
-
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
 </html>
