@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script src="./react/react.production.min.js"></script>
+    <script src="./react/react-dom.production.min.js"></script>
+    <script src="./react/babel.min.js"></script>
+
+    <script type="text/babel">
+      /*
+       * useEffect
+       * 给函数组件增加了操作副作用的能力。
+       * 它跟 class 组件中的 componentDidMount、componentDidUpdate 和 componentWillUnmount 具有相同的用途，只不过被合并成了一个 API
+       */
+      function Example() {
+        const [count, setCount] = React.useState(0);
+
+        // 相当于 componentDidMount 和 componentDidUpdate:
+        React.useEffect(() => {
+          // 使用浏览器的 API 更新页面标题
+          document.title = `You clicked ${count} times`;
+        });
+
+        return (
+          <React.Fragment>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+          </React.Fragment>
+        );
+      }
+
+      ReactDOM.render(<Example />, root);
+    </script>
+  </body>
+</html>

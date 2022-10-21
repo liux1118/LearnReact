@@ -10,8 +10,8 @@
   <body>
     <div id="root"></div>
 
-    <script src="../react/react.development.js"></script>
-    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/react.production.min.js"></script>
+    <script src="../react/react-dom.production.min.js"></script>
     <script src="../react/babel.min.js"></script>
 
     <script type="text/babel">
@@ -21,9 +21,6 @@
           this.state = {
             value: ''
           };
-
-          this.handleChange = this.handleChange.bind(this);
-          this.handleSubmit = this.handleSubmit.bind(this);
         }
 
         handleChange(event) {
@@ -37,13 +34,13 @@
 
         render() {
           return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={(e) => this.handleSubmit(e)}>
               <label>
                 名字：
                 <input
                   type="text"
                   value={this.state.value}
-                  onChange={this.handleChange}
+                  onChange={(e) => this.handleChange(e)}
                 />
               </label>
               <input type="submit" value="提交" />

@@ -10,9 +10,9 @@
   <body>
     <div id="root"></div>
 
-    <script src="../react/react.production.min.js"></script>
-    <script src="../react/react-dom.production.min.js"></script>
-    <script src="../react/babel.min.js"></script>
+    <script src="./react/react.production.min.js"></script>
+    <script src="./react/react-dom.production.min.js"></script>
+    <script src="./react/babel.min.js"></script>
 
     <script type="text/babel">
       class FilterableProductTable extends React.Component {
@@ -69,10 +69,29 @@
       }
 
       class SearchBar extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            value: props.value
+          };
+        }
+
+        handleChange(event) {
+          this.setState({ value: event.target.value });
+        }
+
         render() {
+          const { value } = this.state;
           return (
             <div>
-              <input type="text" placeholder="Search" />
+              <input
+                value={value}
+                onChange={(e) => this.handleChange(e)}
+                placeholder="Search"
+              />
+              <div>
+                <checkbox>Only show products in stock</checkbox>
+              </div>
             </div>
           );
         }
