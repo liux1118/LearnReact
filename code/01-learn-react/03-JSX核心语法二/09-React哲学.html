@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script src="../react/react.production.min.js"></script>
+    <script src="../react/react-dom.production.min.js"></script>
+    <script src="../react/babel.min.js"></script>
+
+    <script type="text/babel">
+      class FilterableProductTable extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            categoryList: [
+              {
+                categoryName: 'Sporting Goods',
+                list: [
+                  {
+                    name: 'Football',
+                    price: '49.99'
+                  },
+                  {
+                    name: 'Baseball',
+                    price: '9.99'
+                  },
+                  {
+                    name: 'Baseball',
+                    price: '9.99'
+                  }
+                ]
+              },
+              {
+                categoryName: 'Electronics',
+                list: [
+                  {
+                    name: 'iPod Touch',
+                    price: '49.99'
+                  },
+                  {
+                    name: 'iPhone 5',
+                    price: '99.99'
+                  },
+                  {
+                    name: 'Nexus 7',
+                    price: '9.99'
+                  }
+                ]
+              }
+            ]
+          };
+        }
+        render() {
+          const { categoryList } = this.state;
+          return (
+            <div>
+              <SearchBar />
+              <ProductTable categoryList={categoryList} />
+            </div>
+          );
+        }
+      }
+
+      class SearchBar extends React.Component {
+        render() {
+          return (
+            <div>
+              <input type="text" placeholder="Search" />
+            </div>
+          );
+        }
+      }
+
+      class ProductTable extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          const { categoryList } = this.props;
+          return (
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ProductCategoryRow categoryList={categoryList} />
+              </tbody>
+            </table>
+          );
+        }
+      }
+
+      function ProductCategoryRow(props) {
+        const { categoryList } = props;
+        return (
+          <div>
+            {categoryList.map((item) => {
+              return (
+                <div>
+                  <tr>{item.categoryName}</tr>
+                  <tr>
+                    <ProductRow row={item.list} />
+                  </tr>
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
+
+      // class ProductCategoryRow extends React.Component {
+      //   constructor(props) {
+      //     super(props);
+      //   }
+      //   render() {
+      //     const { categoryList } = this.props;
+      //     return (
+      //       <div>
+      //         {categoryList.map((item) => {
+      //           return (
+      //             <div>
+      //               <tr>{item.categoryName}</tr>
+      //               <tr>
+      //                 <ProductRow row={item.list} />
+      //               </tr>
+      //             </div>
+      //           );
+      //         })}
+      //       </div>
+      //     );
+      //   }
+      // }
+
+      function ProductRow(props) {
+        const { row } = props;
+        return (
+          <div>
+            {row.map((item) => {
+              return (
+                <div>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
+
+      // class ProductRow extends React.Component {
+      //   constructor(props) {
+      //     super(props);
+      //   }
+      //   render() {
+      //     const { row } = this.props;
+      //     return (
+      //       <div>
+      //         {row.map((item) => {
+      //           return (
+      //             <div>
+      //               <td>{item.name}</td>
+      //               <td>{item.price}</td>
+      //             </div>
+      //           );
+      //         })}
+      //       </div>
+      //     );
+      //   }
+      // }
+
+      // Calculator TemperatureInput BoilingVerdict
+      ReactDOM.render(<FilterableProductTable />, root);
+    </script>
+  </body>
+</html>

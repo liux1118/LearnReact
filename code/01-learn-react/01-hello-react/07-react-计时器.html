@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- 开发依赖 -->
+    <script src="../react/react.development.js" crossorigin></script>
+    <script src="../react/react-dom.development.js" crossorigin></script>
+    <script src="../react/babel.min.js"></script>
+
+    <script type="text/babel">
+      // function Click(props) {
+      //   return (
+      //     <div>
+      //       <h1>Hello Kylin</h1>
+      //       <h2>It is {props.date.toLocaleTimeString()}</h2>
+      //     </div>
+      //   );
+      // }
+
+      class Click extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            date: new Date()
+          };
+        }
+        // 组件挂载后进行调用
+        componentDidMount() {
+          console.log('组件挂载后进行调用');
+          this.timerID = setInterval(() => this.tick(), 1000);
+        }
+
+        // 组件销毁前进行调用
+        componentWillUnmount() {
+          console.log('组件销毁前进行调用');
+          clearInterval(this.timerID);
+        }
+
+        tick() {
+          this.setState({
+            date: new Date()
+          });
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>Hello Kylin</h1>
+              <h2>It is {this.state.date.toLocaleTimeString()}</h2>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<Click />, root);
+    </script>
+  </body>
+</html>

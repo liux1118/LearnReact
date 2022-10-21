@@ -38,6 +38,10 @@
       }
 
       function Avatar(props) {
+        {
+          /*user*/
+        }
+        console.log(props, 'Avatar');
         return (
           <img
             className="Avatar"
@@ -48,8 +52,13 @@
       }
 
       function UserInfo(props) {
+        {
+          /*user*/
+        }
+        console.log(props, 'user');
         return (
           <div className="UserInfo">
+            {/*接收作为props.user的author，并作为user传到Avatar*/}
             <Avatar user={props.user} />
             <div className="UserInfo-name">{props.user.name}</div>
           </div>
@@ -57,8 +66,13 @@
       }
 
       function Comment(props) {
+        {
+          /*author, text, date*/
+        }
+        console.log(props, 'comment');
         return (
           <div className="Comment">
+            {/*这里是props.author作为user传到UserInfo*/}
             <UserInfo user={props.author} />
             <div className="Comment-text">{props.text}</div>
             <div className="Comment-date">{formatDate(props.date)}</div>
@@ -76,14 +90,12 @@
         }
       };
 
-      const author = {
-        avatarUrl:
-          'https://p3-passport.byteimg.com/img/user-avatar/de7219eddbc6edb2111a692d947ec960~64x64.awebp',
-        name: 'Kylin'
-      };
-
       ReactDOM.render(
-        <Comment author={author} text="test" date={comment.date} />,
+        <Comment
+          author={comment.author}
+          text={comment.text}
+          date={comment.date}
+        />,
         root
       );
     </script>
