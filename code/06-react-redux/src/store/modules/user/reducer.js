@@ -5,17 +5,21 @@ const initialState = {
   user: [
     {
       id: 1,
-      username: 'Kylin',
+      username: 'Kylin'
     },
     {
       id: 2,
-      username: 'Arms',
+      username: 'Arms'
     },
     {
       id: 3,
-      username: '熠熠星河',
-    },
+      username: '熠熠星河'
+    }
   ],
+  avatar: {
+    image:
+      'https://portrait.gitee.com/uploads/avatars/user/2793/8380595_liux1118_1628671708.png!avatar30'
+  }
 };
 
 /**
@@ -29,6 +33,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.CHANGE_USER:
       return { ...state, user: action.user };
+    case actionTypes.CHANGE_AVATAR:
+      return { ...state, avatar: action.avatar };
     default:
       return state;
   }

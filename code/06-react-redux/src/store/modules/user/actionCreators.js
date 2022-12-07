@@ -1,6 +1,11 @@
 import * as actionTypes from '../../constants';
 
-export const changeUser = (user) => ({
+export const changeUserAction = (user) => ({
   type: actionTypes.CHANGE_USER,
-  user,
+  user
+});
+
+export const changeAvatarAction = (avatar) => ({
+  type: actionTypes.CHANGE_AVATAR,
+  avatar
 });
