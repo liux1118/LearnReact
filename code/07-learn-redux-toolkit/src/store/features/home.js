@@ -13,8 +13,17 @@ import axios from 'axios';
  */
 export const fetchHomeMultidataAction = createAsyncThunk(
   'fetch/homeMultidata',
-  async () => {
+  async (extraInfo, { dispatch, getState }) => {
+    console.log(extraInfo, dispatch, getState, 'extraInfo, store');
     const res = await axios.get('http://123.207.32.32:8000/home/multidata');
+
+    // 取出数据，并且此处直接dispatch （可以不做）
+    const banners = res.data.data.banner.list;
+    const recommends = res.data.data.recommend.list;
+    dispatch(changeBannersAction(banners));
+    dispatch(changeRecommendsAction(recommends));
+
+    // 返回结果，action会变成fulfilled状态
     return res.data;
   }
 );
@@ -36,22 +45,37 @@ const homeSlice = createSlice({
     changeRecommendsAction(state, { payload }) {
       state.recommends = payload;
     }
-  },
-  // 针对异步操作中三个状态进行监听（也可单独监听某个状态） fetchHomeMultidataAction
-  extraReducers: {
-    // pending 计算属性名
-    [fetchHomeMultidataAction.pending](state, action) {
-      console.log('fetchHomeMultidataAction pending');
-    },
-    [fetchHomeMultidataAction.fulfilled](state, { payload }) {
-      console.log('fetchHomeMultidataAction fulfilled');
-      state.banners = payload.data.banner.list;
-      state.recommends = payload.data.recommend.list;
-    },
-    [fetchHomeMultidataAction.rejected](state, action) {
-      console.log('fetchHomeMultidataAction rejected');
-    }
   }
+
+  // 推荐用法
+  // 针对异步操作中三个状态进行监听（也可单独监听某个状态） fetchHomeMultidataAction
+  // 写法一：
+  // extraReducers: {
+  //   // pending 计算属性名
+  //   [fetchHomeMultidataAction.pending](state, action) {
+  //     console.log('fetchHomeMultidataAction pending');
+  //   },
+  //   [fetchHomeMultidataAction.fulfilled](state, { payload }) {
+  //     console.log('fetchHomeMultidataAction fulfilled');
+  //     state.banners = payload.data.banner.list;
+  //     state.recommends = payload.data.recommend.list;
+  //   },
+  //   [fetchHomeMultidataAction.rejected](state, action) {
+  //     console.log('fetchHomeMultidataAction rejected');
+  //   }
+  // },
+  // 写法二：
+  // extraReducers: (builders) => {
+  //   builders
+  //     .addCase(fetchHomeMultidataAction.pending, (state, action) => {
+  //       console.log('fetchHomeMultidataAction pending');
+  //     })
+  //     .addCase(fetchHomeMultidataAction.fulfilled, (state, { payload }) => {
+  //       console.log('fetchHomeMultidataAction fulfilled');
+  //       state.banners = payload.data.banner.list;
+  //       state.recommends = payload.data.recommend.list;
+  //     });
+  // }
 });
 
 export const { changeBannersAction, changeRecommendsAction } =
