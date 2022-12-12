@@ -1,8 +1,9 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, compose, combineReducers } from 'redux';
+// import thunk from 'redux-thunk';
 
 import counterReducer from './modules/counter';
 import homeReducer from './modules/home';
+import { log, thunk, applyMiddleware } from './middleware';
 
 import userReducer from './modules/user';
 
@@ -16,7 +17,7 @@ import userReducer from './modules/user';
 const reducer = combineReducers({
   counter: counterReducer,
   home: homeReducer,
-  user: userReducer,
+  user: userReducer
 });
 
 // combineReducers实现原理(了解)
@@ -34,7 +35,11 @@ const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true }) || compose;
 
 // applyMiddleware(thunk) 应用中间件 applyMiddleware(thunk, xxx, xxx, xxx)
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+// const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+
+// 对每次派发的action进行拦截，进行日志打印
+const store = createStore(reducer);
+applyMiddleware(store, log, thunk);
 
 export default store;
 
