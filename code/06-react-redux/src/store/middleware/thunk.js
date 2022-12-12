@@ -1,13 +1,15 @@
+// 自己写的thunk
 function thunk(store) {
-  const next = store.dispatch
+  // 保留原来的dispatch
+  const next = store.dispatch;
   function dispatchThunk(action) {
-    if (typeof action === "function") {
-      action(store.dispatch, store.getState)
+    if (typeof action === 'function') {
+      action(store.dispatch, store.getState);
     } else {
-      next(action)
+      next(action);
     }
   }
-  store.dispatch = dispatchThunk
+  store.dispatch = dispatchThunk;
 }
 
-export default thunk
+export default thunk;
